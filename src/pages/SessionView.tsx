@@ -58,7 +58,7 @@ const SessionView = () => {
     const { data, error } = await supabase
       .from("subjects")
       .select("*")
-      .eq("id", subjectId)
+      .eq("id", subjectId || "")
       .single();
 
     if (error) {
@@ -81,7 +81,7 @@ const SessionView = () => {
     const { data, error } = await supabase
       .from("sessions")
       .insert({
-        subject_id: subjectId,
+        subject_id: subjectId || "",
         teacher_id: user.id,
         current_qr_token: initialToken,
         status: "active",
